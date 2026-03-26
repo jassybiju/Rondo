@@ -20,7 +20,7 @@ export default function App() {
   }
   return (
     <div className="flex">
-      <SpinWheel setIndex={setIndex} index={index as number}/>
+      <SpinWheel  index={index as number}/>
       <div>
         Current Score = {score}
         <br />
