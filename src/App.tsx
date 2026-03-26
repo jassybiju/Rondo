@@ -2,13 +2,11 @@ import { useState } from "react";
 import SpinWheel from "./components/Wheel";
 
 import "./App.css";
-import SpinWheels from "./components/SpinWheel";
 import { set1 } from "./data";
 
 export default function App() {
   const [score, setScore] = useState(0);
   const [index, setIndex] = useState<number | null>(null);
-  const [start, setStart] = useState<boolean>(false)
   const [show, setShow] = useState<boolean>(false)
 
   const handleResult = (correct : boolean)=>{
@@ -17,12 +15,12 @@ export default function App() {
     }else{
       setScore(prev => prev - 5)
     }
-    setIndex(prev => prev + 1)
+    setIndex(prev => prev as number + 1)
     setShow(false)
   }
   return (
     <div className="flex">
-      <SpinWheel setIndex={setIndex} index={index}/>
+      <SpinWheel setIndex={setIndex} index={index as number}/>
       <div>
         Current Score = {score}
         <br />

@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { set1 } from "../data";
 
-export default function SpinWheelCanvas({setIndex,index } : {setIndex : (index : number) => void, index : number}) {
+export default function SpinWheelCanvas({index } : { index : number}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [rotation, setRotation] = useState(0);
   const [spinning, setSpinning] = useState(false);
