@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { set1 } from "../data";
 
-export default function SpinWheelCanvas({index } : { index : number}) {
+export default function SpinWheelCanvas({index, color } : { index : number,color : string[]}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [rotation, setRotation] = useState(0);
   const [spinning, setSpinning] = useState(false);
@@ -83,8 +83,9 @@ export default function SpinWheelCanvas({index } : { index : number}) {
         ctx.fill();
 
       // 🎯 Highlight selected slice
-      if (i === index) {
-        ctx.fillStyle = "#000"; // background
+      // if (i === index) {
+      console.log(color[i],i)
+        ctx.fillStyle = color[i]; // background
         roundRect(
           ctx,
           textX - boxWidth / 2,
@@ -95,10 +96,10 @@ export default function SpinWheelCanvas({index } : { index : number}) {
         );
         ctx.fill();
 
-        ctx.fillStyle = "#fff"; // text color
-      } else {
-        ctx.fillStyle = "#000";
-      }
+        ctx.fillStyle = color[i] === "#fff" ? '#000' : "#fff"; // text color
+      // } else {
+      //   ctx.fillStyle = "#000";
+      // }
 
       ctx.fillText(text, textX, 5);
       ctx.restore();
@@ -187,7 +188,7 @@ const getRotationFromIndex = (index: number) => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center  bg-gray-100">
       {/* Pointer */}
       <div className="w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-b-[20px] border-b-red-500 mb-[-10px] z-10" />
 
