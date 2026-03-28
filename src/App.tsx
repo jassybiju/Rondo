@@ -115,7 +115,7 @@ export default function App() {
             onChange={(e)=> setSet(Number(e.target.value))}
               className={`text-2xl font-bold ${timeLeft <= 5 ? "text-red-500 animate-pulse" : "text-gray-800"}`}
             >
-              {Array.from({length : set1[0].qa.length}).map((x,i) => (
+              {Array.from({length : set1[0].qa.length}).map((_x ,i) => (
                 <>
                   <option value={i}>Set{i + 1}</option>
                 </>
