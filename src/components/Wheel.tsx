@@ -5,7 +5,7 @@ import { set1 } from "../data";
 export default function SpinWheelCanvas({index, color } : { index : number,color : string[]}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [rotation, setRotation] = useState(0);
-  const [spinning, setSpinning] = useState(false);
+  // const [spinning, setSpinning] = useState(false);
   const data = set1;
   const total = data.length;
 
@@ -138,44 +138,44 @@ const getRotationFromIndex = (index: number) => {
 };
 
   // 🎡 SPIN
-  const spin = () => {
-    if (spinning) return;
+  // const spin = () => {
+  //   if (spinning) return;
 
-    setSpinning(true);
+  //   setSpinning(true);
 
-    const step = (2 * Math.PI) / data.length
-    const finalRotation = rotation - step
+  //   const step = (2 * Math.PI) / data.length
+  //   const finalRotation = rotation - step
 
-    let start = performance.now();
-    const duration = 4000;
+  //   let start = performance.now();
+  //   const duration = 4000;
 
-    const animate = (time: number) => {
-      const progress = Math.min((time - start) / duration, 1);
+  //   const animate = (time: number) => {
+  //     const progress = Math.min((time - start) / duration, 1);
 
-      // ease out
-      const ease = 1 - Math.pow(1 - progress, 3);
+  //     // ease out
+  //     const ease = 1 - Math.pow(1 - progress, 3);
 
-      const current = rotation + (finalRotation - rotation) * ease;
+  //     const current = rotation + (finalRotation - rotation) * ease;
 
-      const canvas = canvasRef.current!;
-      const ctx = canvas.getContext("2d")!;
-      drawWheel(ctx, current);
+  //     const canvas = canvasRef.current!;
+  //     const ctx = canvas.getContext("2d")!;
+  //     drawWheel(ctx, current);
 
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      } else {
-        setRotation(finalRotation);
-        setSpinning(false);
+  //     if (progress < 1) {
+  //       requestAnimationFrame(animate);
+  //     } else {
+  //       setRotation(finalRotation);
+  //       setSpinning(false);
 
-        // 🎯 result
-        // const index = getResultIndex(finalRotation);
-        // setIndex(index)
+  //       // 🎯 result
+  //       // const index = getResultIndex(finalRotation);
+  //       // setIndex(index)
 
-      }
-    };
+  //     }
+  //   };
 
-    requestAnimationFrame(animate);
-  };
+  //   requestAnimationFrame(animate);
+  // };
 
   // initial draw
   useEffect(() => {
