@@ -14,6 +14,7 @@ export default function App() {
   const [timeLeft, setTimeLeft] = useState(30); // 30 sec game
   const [isPlaying, setIsPlaying] = useState(false);
   const [gameOver, setGameOver] = useState(false);
+  const [set, setSet] = useState(0);
 
   useEffect(() => {
     if (!isPlaying) return;
@@ -47,7 +48,7 @@ export default function App() {
   setColor(
     Array.from({ length: set1.length }, () => "#fff"),
   );
-  setTimeLeft(30); // 30 sec game
+  setTimeLeft(120); // 30 sec game
   setIsPlaying(false);
   setGameOver(false);
   }
@@ -109,6 +110,20 @@ export default function App() {
         {/* 🎮 Game Panel */}
         <div className="flex-1 flex flex-col justify-between">
           <div className="text-center mb-2">
+            <p className="text-sm text-gray-500">Select List</p>
+            <select
+            onChange={(e)=> setSet(Number(e.target.value))}
+              className={`text-2xl font-bold ${timeLeft <= 5 ? "text-red-500 animate-pulse" : "text-gray-800"}`}
+            >
+              {Array.from({length : set1[0].qa.length}).map((x,i) => (
+                <>
+                  <option value={i}>Set{i + 1}</option>
+                </>
+              ))}
+              </select>
+          </div>
+          
+          <div className="text-center mb-2">
             <p className="text-sm text-gray-500">Time Left</p>
             <p
               className={`text-2xl font-bold ${timeLeft <= 5 ? "text-red-500 animate-pulse" : "text-gray-800"}`}
@@ -128,13 +143,13 @@ export default function App() {
           {typeof index === "number" && isPlaying && index < set1.length && (
             <div className="bg-gray-100 rounded-xl p-4 shadow-inner mb-4">
               <p className="text-lg font-semibold text-gray-800">
-                {set1[index].question}
+                {set1[index].qa[set].question}
               </p>
 
               {show && (
                 <div className="mt-4">
                   <p className="text-green-700 font-medium mb-3">
-                    ✅ {set1[index].sol}
+                    ✅ {set1[index].qa[set].sol}
                   </p>
 
                   <div className="flex gap-3">
