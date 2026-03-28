@@ -11,7 +11,7 @@ export default function App() {
   const [color, setColor] = useState(
     Array.from({ length: set1.length }, () => "#fff"),
   );
-  const [timeLeft, setTimeLeft] = useState(30); // 30 sec game
+  const [timeLeft, setTimeLeft] = useState(120); // 30 sec game
   const [isPlaying, setIsPlaying] = useState(false);
   const [gameOver, setGameOver] = useState(false);
   const [set, setSet] = useState(0);
@@ -37,7 +37,7 @@ export default function App() {
     setIndex(0);
     setShow(false);
     setColor(Array.from({ length: set1.length }, () => "#fff"));
-    setTimeLeft(30);
+    setTimeLeft(120);
     setGameOver(false);
     setIsPlaying(true);
   };
